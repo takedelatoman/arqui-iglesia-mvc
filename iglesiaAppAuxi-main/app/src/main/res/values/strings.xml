@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">IglesiaApp</string>
+    <string name="nombre">Digite Nombre</string>
+    <string name="apellido">Digite Apellido</string>
+    <string name="email">Digite email</string>
+    <string name="edad">Digite edad</string>
+
+    <string name="descripcion">Descripcion</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="id">ID</string>
+
+    <string name="gusuario">Gestionar Usuario</string>
+    <string name="tusuario">Tabla Usuario</string>
+
+    <string name="gcargos">Gestionar Cargos</string>
+    <string name="tcargos">Tabla Cargos</string>
+
+
+</resources>
