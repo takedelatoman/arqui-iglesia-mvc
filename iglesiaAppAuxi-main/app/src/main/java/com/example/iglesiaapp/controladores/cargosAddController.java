@@ -30,9 +30,14 @@ public class cargosAddController extends AppCompatActivity {
         cargosNegocio = new CargosNegocio(cargosAddController.this);
 
         // Verifica si se está en modo de edición (cargoIdToEdit diferente de -1)
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            cargoIdToEdit = extras.getInt("cargoIdToEdit");
+        }
+
         if (cargoIdToEdit != -1) {
             // Modo de edición: Busca y muestra los datos del cargo a editar
-            CargosDato cargoToEdit = cargosNegocio.obtenerCargoPorId(cargoIdToEdit);
+            CargosDato cargoToEdit = cargosNegocio.obtenerPorId(cargoIdToEdit);
             if (cargoToEdit != null) {
                 etnombre1.setText(cargoToEdit.getNombre());
                 etdescripcion.setText(cargoToEdit.getDescripcion());
@@ -60,6 +65,7 @@ public class cargosAddController extends AppCompatActivity {
             }
         });
     }
+
 
     public void limpiar() {
         etnombre1.setText("");

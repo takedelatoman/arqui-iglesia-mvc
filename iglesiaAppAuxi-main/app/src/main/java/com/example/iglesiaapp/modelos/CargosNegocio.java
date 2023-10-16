@@ -71,7 +71,7 @@ public class CargosNegocio extends conexionDB {
             bd.close();
         }
     }
-    public CargosDato obtenerCargoPorId(int id) {
+    public CargosDato obtenerPorId(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         CargosDato cargo = null;
 
@@ -90,6 +90,7 @@ public class CargosNegocio extends conexionDB {
         db.close();
         return cargo;
     }
+
     public void editar(CargosDato cargosDato) {
         SQLiteDatabase db = getWritableDatabase();
         if (db != null) {

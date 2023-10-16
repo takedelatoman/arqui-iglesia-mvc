@@ -38,7 +38,7 @@
         android:id="@+id/btn_editar1"
         android:layout_width="103dp"
         android:layout_height="82dp"
-        android:onClick="onClick"
+        android:onClick="onClickEditar"
         android:text="@string/editar"
         android:textSize="10sp" />
 

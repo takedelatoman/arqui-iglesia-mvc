@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.example.iglesiaapp.controladores.cargosAddController;
 import com.example.iglesiaapp.modelos.CargosDato;
 import com.example.iglesiaapp.modelos.CargosNegocio;
 import com.example.iglesiaapp.modelos.UsuarioDato;
@@ -66,7 +67,8 @@ public class cargosTabla extends AppCompatActivity {
         String idStr = et_id.getText().toString();
         if (!idStr.isEmpty()) {
             int id = Integer.parseInt(idStr);
-            cargosNegocio = new CargosNegocio(context);
+            //aqui no tocar este this
+            cargosNegocio = new CargosNegocio(this);
             try {
                 // Intenta eliminar el cargo
                 cargosNegocio.eliminar(id);
@@ -106,4 +108,18 @@ public class cargosTabla extends AppCompatActivity {
             Toast.makeText(this, "Por favor, ingrese un ID", Toast.LENGTH_SHORT).show();
         }
     }
+    public void onClickEditar(View v) {
+        et_id = findViewById(R.id.et_id);
+        String idStr = et_id.getText().toString();
+        if (!idStr.isEmpty()) {
+            int id = Integer.parseInt(idStr);
+            // Abre la actividad de edición en modo de edición y pasa el ID del cargo a editar
+            Intent editarIntent = new Intent(this, cargosAddController.class);
+            editarIntent.putExtra("cargoIdToEdit", id);
+            startActivity(editarIntent);
+        } else {
+            Toast.makeText(this, "Por favor, ingrese un ID", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
