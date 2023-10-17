@@ -22,6 +22,15 @@ public class conexionDB extends SQLiteOpenHelper{
            ")";
 
 
+    private String tablaEventos="CREATE TABLE eventos(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
+            "nombre TEXT, "+
+            "fecha TEXT, "+
+            "descripcion TEXT"+
+            ")";
+
+
+
     public conexionDB(@Nullable Context context) {
         super(context, "iglesia.db", null, 1);
     }
@@ -31,12 +40,14 @@ public class conexionDB extends SQLiteOpenHelper{
 
         sqLiteDatabase.execSQL(tablaUsuario);
         sqLiteDatabase.execSQL(tablaCargos);
+        sqLiteDatabase.execSQL(tablaEventos);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaUsuario);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaCargos);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaEventos);
         onCreate(sqLiteDatabase);
     }
 

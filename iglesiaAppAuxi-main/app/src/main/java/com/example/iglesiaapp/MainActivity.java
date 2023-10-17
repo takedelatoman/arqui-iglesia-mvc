@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.iglesiaapp.controladores.cargosAddController;
+import com.example.iglesiaapp.controladores.eventosAddController;
 import com.example.iglesiaapp.controladores.usuarioAddController;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_gusuario,btn_tabla_usuario,btn_gcargos,btn_tabla_cargos;
+    Button btn_gusuario,btn_tabla_usuario,btn_gcargos,btn_tabla_cargos,btn_geventos,btn_tabla_eventos;
 
 
     @Override
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         btn_tabla_usuario=findViewById(R.id.btn_tabla_usuario);
         btn_gcargos = findViewById(R.id.btn_gcargos); // Obtén una referencia al botón
         btn_tabla_cargos=findViewById(R.id.btn_tabla_cargos);
+
+        btn_geventos = findViewById(R.id.btn_geventos); // Obtén una referencia al botón
+        btn_tabla_eventos=findViewById(R.id.btn_tabla_eventos);
 
         btn_gusuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_geventos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, eventosAddController.class);//Dirige hacia "para agregar un evento"
+                startActivity(intent);
+            }
+        });
+        btn_tabla_eventos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, eventosTabla.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 
 }

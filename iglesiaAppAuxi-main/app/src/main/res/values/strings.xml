@@ -4,6 +4,7 @@
     <string name="apellido">Digite Apellido</string>
     <string name="email">Digite email</string>
     <string name="edad">Digite edad</string>
+    <string name="fecha">Digite Fecha</string>
 
     <string name="descripcion">Descripcion</string>
 
@@ -17,6 +18,9 @@
 
     <string name="gcargos">Gestionar Cargos</string>
     <string name="tcargos">Tabla Cargos</string>
+
+    <string name="geventos">Gestionar Eventos</string>
+    <string name="teventos">Tabla Eventos</string>
 
 
 </resources>

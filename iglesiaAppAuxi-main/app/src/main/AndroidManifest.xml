@@ -14,6 +14,15 @@
         android:theme="@style/Theme.IglesiaApp"
         tools:targetApi="31">
         <activity
+            android:name=".eventosAddController"
+            android:exported="false" />
+        <activity
+            android:name=".eventosTabla"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.eventosAddController"
+            android:exported="false" />
+        <activity
             android:name=".cargosTabla"
             android:exported="false" />
         <activity

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".usuarioTabla">
+    tools:context="cargosTabla">
 
 
     <EditText
@@ -16,6 +16,7 @@
         android:inputType="number"
         android:text="@string/id" />
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
 
 
         />
+
 
     <Button
         android:id="@+id/btn_eliminar1"
@@ -44,17 +46,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="true"
-            >
+            android:fillViewport="true">
+
 
             <TableLayout
                 android:id="@+id/tabla"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
+
+
         </HorizontalScrollView>
+
+
     </ScrollView>
+
+
+
+
 
 </LinearLayout>

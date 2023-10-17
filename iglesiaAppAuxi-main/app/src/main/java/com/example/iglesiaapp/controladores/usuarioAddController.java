@@ -17,6 +17,7 @@ public class usuarioAddController extends AppCompatActivity {
     Button btn_guardar;
     EditText etnombre, etapellido ,etemail,etedad;
     UsuarioNegocio usuarioNegocio;
+    int usuarioIdToEdit = -1; // Agrega un atributo para almacenar el ID del cargo a editar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,29 @@ public class usuarioAddController extends AppCompatActivity {
         btn_guardar=findViewById(R.id.btn_guardar);
 
         usuarioNegocio=new UsuarioNegocio(usuarioAddController.this);
+
+        //añádi esto
+        // Verifica si se está en modo de edición (cargoIdToEdit diferente de -1)
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            usuarioIdToEdit = extras.getInt("usuarioIdToEdit");
+        }
+
+        if (usuarioIdToEdit != -1) {
+            // Modo de edición: Busca y muestra los datos del cargo a editar
+            UsuarioDato usuarioToEdit = usuarioNegocio.obtenerPorId(usuarioIdToEdit);
+            if (usuarioToEdit != null) {
+                etnombre.setText(usuarioToEdit.getNombre());
+                etapellido.setText(usuarioToEdit.getApellido());
+                etemail.setText(usuarioToEdit.getEmail());
+
+
+                etedad.setText(String.valueOf(usuarioToEdit.getEdad()));
+            }
+
+
+        }
+        //hasta aqui
         btn_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,11 +60,21 @@ public class usuarioAddController extends AppCompatActivity {
                 String apellido = etapellido.getText().toString();
                 String correo=etemail.getText().toString();
                 int edad= Integer.parseInt(etedad.getText().toString());
-                UsuarioDato usuarioDato=new UsuarioDato(-1,nombre,apellido,correo,edad);
-                usuarioNegocio.agregar(usuarioDato);
+                UsuarioDato usuarioDato=new UsuarioDato(usuarioIdToEdit,nombre,apellido,correo,edad);
+                if (usuarioIdToEdit == -1) {
+                    // Modo de agregar: Agrega un nuevo cargo
+                    usuarioNegocio.agregar(usuarioDato);
+                    Toast.makeText(usuarioAddController.this, "Usuario Añadido", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Modo de edición: Edita el cargo existente
+                    usuarioNegocio.editar(usuarioDato);
+                    Toast.makeText(usuarioAddController.this, "Usuario Editado", Toast.LENGTH_SHORT).show();
+                }
 
                 limpiar();
-                Toast.makeText(usuarioAddController.this, "Usuario Guardado", Toast.LENGTH_SHORT).show();
+
+
+                //Toast.makeText(usuarioAddController.this, "Usuario Guardado", Toast.LENGTH_SHORT).show();
             }
         });
     }
