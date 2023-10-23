@@ -13,7 +13,8 @@ public class conexionDB extends SQLiteOpenHelper{
             "nombre TEXT, "+
             "apellido TEXT, "+
             "email TEXT, "+
-            "edad INTEGER "+
+            "edad INTEGER, "+
+            "cargo_id INTEGER"+
             ")";
     private String tablaCargos="CREATE TABLE cargos(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
@@ -29,6 +30,14 @@ public class conexionDB extends SQLiteOpenHelper{
             "descripcion TEXT"+
             ")";
 
+    private String tablaInvitados="CREATE TABLE invitados(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
+            "nombre TEXT, "+
+            "edad Integer, "+
+            "fecha TEXT"+
+
+            ")";
+
 
 
     public conexionDB(@Nullable Context context) {
@@ -41,6 +50,7 @@ public class conexionDB extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(tablaUsuario);
         sqLiteDatabase.execSQL(tablaCargos);
         sqLiteDatabase.execSQL(tablaEventos);
+        sqLiteDatabase.execSQL(tablaInvitados);
     }
 
     @Override
@@ -48,6 +58,7 @@ public class conexionDB extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaUsuario);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaCargos);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaEventos);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ tablaInvitados);
         onCreate(sqLiteDatabase);
     }
 

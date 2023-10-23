@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.iglesiaapp.R;
+import com.example.iglesiaapp.modelos.CargosDato;
 import com.example.iglesiaapp.modelos.EventosDato;
 import com.example.iglesiaapp.modelos.EventosNegocio;
 
@@ -20,6 +22,8 @@ public class eventosAddController extends AppCompatActivity {
 
     Button btn_guardar2;
     EditText etnombre2,etfecha2, etdescripcion2;
+
+
 
     EventosNegocio eventosNegocio;
     int eventoIdToEdit = -1; // Agrega un atributo para almacenar el ID del cargo a editar

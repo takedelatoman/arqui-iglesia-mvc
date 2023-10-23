@@ -22,5 +22,8 @@
     <string name="geventos">Gestionar Eventos</string>
     <string name="teventos">Tabla Eventos</string>
 
+    <string name="ginvitados">Gestionar Invitados</string>
+    <string name="tinvitados">Tabla Invitados</string>
+
 
 </resources>

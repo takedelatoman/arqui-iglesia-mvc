@@ -8,12 +8,23 @@ public class UsuarioDato {
     private String email;
     private int edad;
 
-    public UsuarioDato(int id, String nombre,  String apellido, String email, int edad) {
+    private int cargo_id;
+
+    public int getCargo_id() {
+        return cargo_id;
+    }
+
+    public void setCargo_id(int cargo_id) {
+        this.cargo_id = cargo_id;
+    }
+
+    public UsuarioDato(int id, String nombre, String apellido, String email, int edad,int cargo_id) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.edad = edad;
+        this.cargo_id = cargo_id;
     }
 
     public int getId() {

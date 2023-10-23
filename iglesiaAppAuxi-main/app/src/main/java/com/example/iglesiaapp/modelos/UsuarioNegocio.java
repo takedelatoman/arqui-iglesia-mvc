@@ -16,6 +16,8 @@ import java.util.List;
 public class UsuarioNegocio extends conexionDB {
 
     Context context;
+
+
     public UsuarioNegocio(@Nullable Context context) {
         super(context);
         this.context=context;
@@ -29,6 +31,7 @@ public class UsuarioNegocio extends conexionDB {
             cv.put("apellido",usuarioDato.getApellido());
             cv.put("email",usuarioDato.getEmail());
             cv.put("edad",usuarioDato.getEdad());
+            cv.put("cargo_id",usuarioDato.getCargo_id());
             db.insert("usuario",null,cv);
             db.close();
         }
@@ -45,12 +48,14 @@ public class UsuarioNegocio extends conexionDB {
                 String apellido=cursor.getString(2);
                 String email=cursor.getString(3);
                 int edad=cursor.getInt(4);
+                int cargo_id=cursor.getInt(5);
                 //int edad = cursor.getInt(cursor.getColumnIndex("edad"));
                 UsuarioDato newUsuario=new UsuarioDato(id,
                         nombre,
                         apellido,
                         email,
-                        edad
+                        edad,
+                        cargo_id
                         );
                 list.add(newUsuario);
             }while (cursor.moveToNext());
@@ -82,7 +87,7 @@ public class UsuarioNegocio extends conexionDB {
         SQLiteDatabase db = this.getReadableDatabase();
         UsuarioDato usuario = null;
 
-        Cursor cursor = db.query("usuario", new String[]{"id", "nombre", "apellido","email","edad"},
+        Cursor cursor = db.query("usuario", new String[]{"id", "nombre", "apellido","email","edad","cargo_id"},
                 "id = ?", new String[]{String.valueOf(id)}, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -91,7 +96,8 @@ public class UsuarioNegocio extends conexionDB {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getInt(5)
             );
         }
 
@@ -108,6 +114,7 @@ public class UsuarioNegocio extends conexionDB {
             cv.put("apellido", usuarioDato.getApellido());
             cv.put("email", usuarioDato.getEmail());
             cv.put("edad", usuarioDato.getEdad());
+            cv.put("cargo_id", usuarioDato.getCargo_id());
 
             String whereClause = "id = ?";
             String[] whereArgs = {String.valueOf(usuarioDato.getId())};
@@ -116,6 +123,7 @@ public class UsuarioNegocio extends conexionDB {
             db.close();
         }
     }
+
 
 
 }
