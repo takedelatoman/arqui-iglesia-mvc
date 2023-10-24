@@ -30,6 +30,7 @@ public class EventosNegocio extends conexionDB {
             cv.put("fecha", eventosDato.getFecha());
 
             cv.put("descripcion",eventosDato.getDescripcion());
+            cv.put("usuario_id",eventosDato.getUsuario_id());
             db.insert("eventos",null,cv);
             db.close();
         }
@@ -45,10 +46,12 @@ public class EventosNegocio extends conexionDB {
                 String nombre=cursor.getString(1);
                 String fecha=cursor.getString(2);
                 String descripcion=cursor.getString(3);
+                int usuario_id=cursor.getInt(4);
                 EventosDato newEvento=new EventosDato(id,
                         nombre,
                         fecha,
-                        descripcion
+                        descripcion,
+                        usuario_id
                 );
 
                 list.add(newEvento);
@@ -81,7 +84,7 @@ public class EventosNegocio extends conexionDB {
         SQLiteDatabase db = this.getReadableDatabase();
         EventosDato evento = null;
 
-        Cursor cursor = db.query("eventos", new String[]{"id", "nombre", "fecha","descripcion"},
+        Cursor cursor = db.query("eventos", new String[]{"id", "nombre", "fecha","descripcion","usuario_id"},
                 "id = ?", new String[]{String.valueOf(id)}, null, null, null,null);
 
         if (cursor.moveToFirst()) {
@@ -89,7 +92,8 @@ public class EventosNegocio extends conexionDB {
                     cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3)
+                    cursor.getString(3),
+                    cursor.getInt(4)
             );
         }
 
@@ -105,6 +109,7 @@ public class EventosNegocio extends conexionDB {
             cv.put("nombre", eventosDato.getNombre());
             cv.put("fecha", eventosDato.getFecha());
             cv.put("descripcion", eventosDato.getDescripcion());
+            cv.put("usuario_id", eventosDato.getUsuario_id());
 
             String whereClause = "id = ?";
             String[] whereArgs = {String.valueOf(eventosDato.getId())};

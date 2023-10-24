@@ -27,7 +27,8 @@ public class conexionDB extends SQLiteOpenHelper{
             "id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
             "nombre TEXT, "+
             "fecha TEXT, "+
-            "descripcion TEXT"+
+            "descripcion TEXT, "+
+            "usuario_id INTEGER"+
             ")";
 
     private String tablaInvitados="CREATE TABLE invitados(" +

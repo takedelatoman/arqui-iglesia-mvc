@@ -21,7 +21,7 @@ import java.util.List;
 public class eventosTabla extends AppCompatActivity {
 
     private TableLayout tableLayout;
-    private String[]header={"ID","Nombre","fecha","Descripcion"};
+    private String[]header={"ID","Nombre","fecha","Descripcion","Usuario"};
     private ArrayList<String[]> filas=new ArrayList<>();
 
     EditText et_id;
@@ -53,7 +53,7 @@ public class eventosTabla extends AppCompatActivity {
         eventosNegocio=new EventosNegocio(eventosTabla.this);
         List<EventosDato> eventosDatoList=eventosNegocio.listar();
         for (EventosDato eventos:eventosDatoList){
-            filas.add(new String[]{String.valueOf(eventos.getId()),eventos.getNombre(),eventos.getFecha(),eventos.getDescripcion()});
+            filas.add(new String[]{String.valueOf(eventos.getId()),eventos.getNombre(),eventos.getFecha(),eventos.getDescripcion(),String.valueOf(eventos.getUsuario_id())});
         }
 
         return filas;

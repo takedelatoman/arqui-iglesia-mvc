@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import android.widget.EditText;
@@ -14,8 +15,11 @@ import com.example.iglesiaapp.R;
 import com.example.iglesiaapp.modelos.CargosDato;
 import com.example.iglesiaapp.modelos.EventosDato;
 import com.example.iglesiaapp.modelos.EventosNegocio;
+import com.example.iglesiaapp.modelos.UsuarioDato;
+import com.example.iglesiaapp.modelos.UsuarioNegocio;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class eventosAddController extends AppCompatActivity {
@@ -23,9 +27,15 @@ public class eventosAddController extends AppCompatActivity {
     Button btn_guardar2;
     EditText etnombre2,etfecha2, etdescripcion2;
 
+    Spinner spinnerUsuario;
+
+    List<UsuarioDato> listaUsuario;
+
 
 
     EventosNegocio eventosNegocio;
+
+    UsuarioNegocio usuarioNegocio=new UsuarioNegocio(this);
     int eventoIdToEdit = -1; // Agrega un atributo para almacenar el ID del cargo a editar
 
     @Override
@@ -36,6 +46,7 @@ public class eventosAddController extends AppCompatActivity {
         etnombre2 = findViewById(R.id.etnombre2);
         etfecha2 = findViewById(R.id.etfecha2);
         etdescripcion2 = findViewById(R.id.etdescripcion2);
+        spinnerUsuario = findViewById(R.id.spinnerUsuarioEvento);
 
 
         btn_guardar2 = findViewById(R.id.btn_guardar2);
@@ -58,15 +69,29 @@ public class eventosAddController extends AppCompatActivity {
 
             }
         }
+        //hasta aqui
+        List<UsuarioDato>listaUsuario = usuarioNegocio.listar();
+        List<String> nombreUsuario = new ArrayList<>();
+        for (UsuarioDato usuario : listaUsuario){
+            nombreUsuario.add(usuario.getNombre());
+        }
+
+        ArrayAdapter<String> adapterCategoria = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, nombreUsuario);
+        spinnerUsuario.setAdapter(adapterCategoria);
 
         btn_guardar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                UsuarioDato usuarioSeleccionado = listaUsuario.get(spinnerUsuario.getSelectedItemPosition());
+
                 String nombre = etnombre2.getText().toString();
                 String fecha = etfecha2.getText().toString();
                 String descripcion = etdescripcion2.getText().toString();
 
-                EventosDato eventosDato = new EventosDato(eventoIdToEdit, nombre, fecha,descripcion);
+                int usuario_id = usuarioSeleccionado.getId(); // Obtén el ID del cargo seleccionado
+
+                EventosDato eventosDato = new EventosDato(eventoIdToEdit, nombre, fecha,descripcion,usuario_id);
 
                 if (eventoIdToEdit == -1) {
                     // Modo de agregar: Agrega un nuevo cargo

@@ -1,6 +1,6 @@
 package com.example.iglesiaapp.modelos;
 
-import java.util.Date;
+
 
 public class EventosDato {
 
@@ -10,6 +10,8 @@ public class EventosDato {
     private String fecha;
 
     private String Descripcion;
+
+    private int usuario_id;
 
     public int getId() {
         return id;
@@ -43,11 +45,21 @@ public class EventosDato {
         Descripcion = descripcion;
     }
 
-    public EventosDato(int id, String nombre, String fecha, String descripcion) {
+    public int getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(int usuario_id) {
+        this.usuario_id = usuario_id;
+    }
+
+    public EventosDato(int id, String nombre, String fecha, String descripcion,int usuario_id) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         Descripcion = descripcion;
+        this.usuario_id = usuario_id;
+
     }
 
     @Override
